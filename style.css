@@ -1,3 +1,4 @@
+/* --- RESET & BASE --- */
 * {
   margin: 0;
   padding: 0;
@@ -12,15 +13,47 @@ body {
   overflow-x: hidden;
 }
 
-/* --- BACKGROUND --- */
-#bg-spline {
+/* --- NOVO FUNDO GRADIENTE ROXO --- */
+/* Substitui o Spline de fundo por um gradiente performático e elegante */
+.gradient-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #050505 100%);
+}
+
+/* Efeito de "Aurora" (Luzes roxas suaves que se movem) */
+.gradient-bg::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(168, 85, 247, 0.15) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(99, 102, 241, 0.1) 0%,
+      transparent 40%
+    );
+  animation: aurora-rotation 25s linear infinite;
+}
+
+@keyframes aurora-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .overlay-noise {
@@ -30,7 +63,7 @@ body {
   width: 100%;
   height: 100%;
   background: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.03;
+  opacity: 0.04;
   pointer-events: none;
   z-index: 0;
 }
@@ -40,7 +73,7 @@ body {
   z-index: 10;
 }
 
-/* Estilização do Header para conter o Nav */
+/* --- HEADER --- */
 header {
   display: flex;
   justify-content: space-between;
@@ -52,14 +85,13 @@ header {
   left: 0;
   z-index: 1000;
   backdrop-filter: blur(15px);
-  background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  background: rgba(0, 0, 0, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Estilo do Menu de Navegação */
 nav {
   display: flex;
-  gap: 2.5rem; /* Espaço entre os links */
+  gap: 2.5rem;
 }
 
 nav a {
@@ -69,17 +101,15 @@ nav a {
   font-weight: 600;
   letter-spacing: 2px;
   transition: 0.3s;
-  opacity: 0.7;
+  opacity: 0.6;
   position: relative;
 }
 
-/* Efeito Hover nos Links */
 nav a:hover {
   opacity: 1;
-  color: #a855f7; /* Cor roxa do seu tema */
+  color: #a855f7;
 }
 
-/* Linha decorativa que aparece embaixo ao passar o mouse */
 nav a::after {
   content: "";
   position: absolute;
@@ -95,26 +125,24 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* Estilo do Botão LinkedIn (Direita) */
 .btn-signin {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.4);
   color: white;
   padding: 0.6rem 1.5rem;
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
-  letter-spacing: 1px;
   transition: 0.4s;
 }
 
 .btn-signin:hover {
-  background: white;
-  color: black;
+  background: #a855f7;
+  color: white;
   transform: scale(1.05);
 }
 
-/* --- MAIN / HERO (CORRIGIDO) --- */
+/* --- HERO --- */
 main {
   min-height: 100vh;
   display: flex;
@@ -136,8 +164,16 @@ main {
 }
 
 .spline-spacer {
-  flex: 1; /* Cria o vácuo para o robô aparecer sem tampar o texto */
-  height: 500px;
+  flex: 1;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spline-spacer spline-viewer {
+  width: 100%;
+  height: 100%;
 }
 
 .content h1 {
@@ -153,11 +189,25 @@ main {
   -webkit-text-fill-color: transparent;
 }
 
+.tag-box {
+  margin-bottom: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 15px;
+  border: 1px solid #a855f7;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  letter-spacing: 1px;
+}
+
 .description {
   font-size: 1.1rem;
-  color: #aaa;
+  color: #bbb;
   line-height: 1.6;
-  max-width: 500px;
   margin-bottom: 2.5rem;
 }
 
@@ -166,6 +216,8 @@ main {
   gap: 1rem;
 }
 
+/* --- BOTÕES COM HOVER TURBINADO --- */
+
 .btn-signing-main {
   text-decoration: none;
   background: linear-gradient(45deg, #a855f7, #6366f1);
@@ -173,8 +225,36 @@ main {
   padding: 1rem 2.5rem;
   border-radius: 50px;
   font-weight: 700;
-  transition: 0.4s;
+  display: inline-block;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+  overflow: hidden; /* Para o efeito de brilho interno */
+}
+
+.btn-signing-main:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(168, 85, 247, 0.6);
+  letter-spacing: 1px;
+}
+
+/* Efeito de "Flash" passando pelo botão ao passar o mouse */
+.btn-signing-main::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn-signing-main:hover::after {
+  left: 120%;
+  opacity: 1;
 }
 
 .btn-get-started {
@@ -183,9 +263,19 @@ main {
   padding: 1rem 2rem;
   border-radius: 50px;
   color: #fff;
-  transition: 0.3s;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-get-started:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #a855f7;
+  color: #a855f7;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+  transform: translateY(-3px);
 }
 
 /* --- SKILLS SECTION --- */
@@ -198,9 +288,15 @@ main {
   font-size: 2.5rem;
   letter-spacing: 0.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(to bottom, #fff, #666);
+  background: linear-gradient(to right, #fff, #a855f7, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+.section-title p {
+  color: #888;
+  margin-bottom: 3rem;
 }
 
 .skills-grid {
@@ -214,7 +310,7 @@ main {
   position: relative;
   height: 250px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
@@ -226,10 +322,12 @@ main {
 }
 
 .skill-card-fancy i {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
   transition: 0.5s;
+  color: #a855f7;
 }
+
 .skill-card-fancy h3 {
   font-weight: 300;
   letter-spacing: 2px;
@@ -244,90 +342,119 @@ main {
 
 .skill-card-fancy:hover i {
   transform: scale(1.2);
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
 
-/* Mantenha todo o seu CSS anterior e adicione/ajuste estas partes: */
+/* --- RESPONSIVIDADE MELHORADA --- */
 
-.hero-container {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  z-index: 5;
-}
-
-.spline-spacer {
-  flex: 1;
-  height: 600px; /* Altura ideal para o robô */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-/* Garante que o robô ocupe todo o container dele */
-.spline-spacer spline-viewer {
-  width: 100%;
-  height: 100%;
-}
-
-/* Ajuste Responsivo: Se a tela for pequena, o robô vai para baixo ou some para não poluir */
+/* Ajustes para Tablets e telas médias */
 @media (max-width: 1024px) {
+  header {
+    padding: 1rem 5%;
+  }
+
   .hero-container {
     flex-direction: column;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 140px; /* Mais espaço para o header fixo */
+    gap: 2rem;
   }
-  .spline-spacer {
-    width: 100%;
-    height: 400px; /* Menor em celulares */
-  }
+
   .content {
     order: 1;
+    max-width: 100%;
   }
+
   .spline-spacer {
     order: 2;
+    width: 100%;
+    height: 450px; /* Robô maior em tablets */
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .description {
+    margin: 0 auto 2.5rem;
   }
 }
 
-/* Estilo da Tag que estava faltando no seu último envio */
-.tag-box {
-  margin-bottom: 1rem;
-}
-.tag {
-  display: inline-block;
-  padding: 5px 15px;
-  border: 1px solid #a855f7;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  color: #a855f7;
-  background: rgba(168, 85, 247, 0.1);
-}
+/* Ajustes para Celulares (iPhone, Android, etc) */
+@media (max-width: 768px) {
+  nav,
+  .hide-mobile {
+    display: none; /* Esconde menu e botão linkedin */
+  }
 
-/* --- RESPONSIVO --- */
-@media (max-width: 700px) {
-  .hero-container {
+  header {
+    justify-content: center; /* Centraliza a logo no mobile */
+  }
+
+  main {
+    padding: 0 5%;
+  }
+
+  .content h1 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+  }
+
+  /* Ajuste crucial para o robô não ficar "esmagado" */
+  .spline-spacer {
+    height: 400px;
+    margin-top: -20px;
+  }
+
+  /* Melhoria na Grade de Skills para o Linux aparecer */
+  .skills-section {
+    padding: 80px 5% 120px 5%; /* Aumentamos o padding inferior (120px) */
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .skill-card-fancy {
+    height: 160px; /* Cards menores para não ocupar a tela toda */
+  }
+
+  .skill-card-fancy i {
+    font-size: 2.2rem;
+  }
+
+  .buttons {
     flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .btn-signing-main,
+  .btn-get-started {
+    width: 100%;
     text-align: center;
   }
-  .spline-spacer {
-    display: none;
-  }
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
 
-@media (max-width: 600px) {
-  nav {
-    display: none; /* Esconde o menu em telas muito pequenas */
+/* Ajustes para Celulares Pequenos */
+@media (max-width: 480px) {
+  .content h1 {
+    font-size: 2.2rem;
   }
 
-  .btn-signin {
-    display: none; /* Esconde o botão LinkedIn em telas muito pequenas */
+  /* Em telas muito finas, 1 coluna evita quebras de texto nos cards */
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spline-spacer {
+    height: 320px;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+    letter-spacing: 0.2rem;
   }
 }
