@@ -1,45 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Minha Página</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
-	<img class="image-gradient" src="gradient.png" alt="gradient">
-	<div class="layer-blur"></div>
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pedro | Fullstack Developer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <spline-viewer
+      id="bg-spline"
+      url="https://prod.spline.design/mmPUmU0JsWz3jiTK/scene.splinecode"
+      hint="false"
+    ></spline-viewer>
 
-	<div class="container">
-		<header>
-			<h1 class="logo">PEDRO</h1>
+    <div class="overlay-noise"></div>
 
-			<nav>
-				<a href="">SERVICES</a>
-				<a href="">ABOUT</a>
-				<a href="">SKILLS</a>
-				<a href="">PROJECTS</a>
-			</nav>
+    <div class="container">
+      <header>
+        <h1 data-aos="fade-down" class="logo">PEDRO</h1>
+        <nav>
+          <a href="#home">HOME</a>
+          <a href="#skills">SKILLS</a>
+          <a href="#projects">PROJECTS</a>
+          <a href="#about">ABOUT</a>
+        </nav>
+        <a href="https://linkedin.com" target="_blank">
+          <button class="btn-signin">LINKEDIN</button>
+        </a>
+      </header>
 
-			<button class="btn-signin">LINKEDIN</button>
-		</header>
-		<main>
-			<div class="content">
-				<div class="tag-box">
-					<div class="tag">INTRUCING &wedbar;</div>
-				</div>
-				<h1>ENAIL FOR<br>DEVELOPERS</h1>
-				<p class="description">
-					the best way to reach uumans insted of spam folders, 
-					dlever transactional and marketing emails at scale
-				</p>
+      <main id="home">
+        <div class="hero-container">
+          <div class="content" data-aos="fade-right">
+            <div class="tag-box">
+              <div class="tag">CREATING THE FUTURE &wedbar;</div>
+            </div>
+            <h1><span class="gradient-text">FULLSTACK</span><br />DEVELOPER</h1>
+            <p class="description">
+              Especialista em construir experiências digitais modernas.
+              Transformando café em código de alta performance e interfaces
+              memoráveis.
+            </p>
+            <div class="buttons">
+              <a href="#projects" class="btn-signing-main">Get Started ></a>
+              <a href="#skills" class="btn-get-started">My Stack</a>
+            </div>
+          </div>
 
-				<div class="buttons">
-					<a href="#" class="btn-get-started">Documentation &gt;</a>
-					<a href="#" class="btn-signing-main">Getstared &gt;</a>
-				</div>
-			</div>
-		</main>
-	</div>
-</body>
+          <div class="spline-spacer" data-aos="fade-left">
+            <spline-viewer
+              url="https://prod.spline.design/Or8v5Ghr8VB7N6lz/scene.splinecode"
+              hint="false"
+            >
+            </spline-viewer>
+          </div>
+        </div>
+      </main>
+
+      <section id="skills" class="skills-section">
+        <div class="section-title">
+          <h2 data-aos="zoom-out">TECHNICAL UNIVERSE</h2>
+          <p>As ferramentas que utilizo para criar sistemas galácticos</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card-fancy" data-aos="fade-up" data-aos-delay="100">
+            <div class="glow"></div>
+            <div class="card-inner">
+              <i class="fab fa-vuejs"></i>
+              <h3>Vue.js</h3>
+            </div>
+          </div>
+          <div class="skill-card-fancy" data-aos="fade-up" data-aos-delay="200">
+            <div class="glow"></div>
+            <div class="card-inner">
+              <i class="fab fa-react"></i>
+              <h3>React.js</h3>
+            </div>
+          </div>
+          <div class="skill-card-fancy" data-aos="fade-up" data-aos-delay="300">
+            <div class="glow"></div>
+            <div class="card-inner">
+              <i class="fab fa-laravel"></i>
+              <h3>Laravel</h3>
+            </div>
+          </div>
+          <div class="skill-card-fancy" data-aos="fade-up" data-aos-delay="400">
+            <div class="glow"></div>
+            <div class="card-inner">
+              <i class="fas fa-leaf"></i>
+              <h3>Spring</h3>
+            </div>
+          </div>
+          <div class="skill-card-fancy" data-aos="fade-up" data-aos-delay="500">
+            <div class="glow"></div>
+            <div class="card-inner">
+              <i class="fas fa-database"></i>
+              <h3>PostgreSQL</h3>
+            </div>
+          </div>
+          <div class="skill-card-fancy" data-aos="fade-up" data-aos-delay="600">
+            <div class="glow"></div>
+            <div class="card-inner">
+              <i class="fab fa-linux"></i>
+              <h3>Linux</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/@splinetool/viewer@1.12.74/build/spline-viewer.js"
+    ></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 1000 });
+
+      // Remove a logo de TODOS os spline-viewers na página
+      const removeLogos = () => {
+        const viewers = document.querySelectorAll("spline-viewer");
+        viewers.forEach((v) => {
+          if (v.shadowRoot) {
+            const logo = v.shadowRoot.querySelector("#built-with-spline");
+            if (logo) logo.remove();
+          }
+        });
+      };
+      setInterval(removeLogos, 500);
+    </script>
+  </body>
 </html>
