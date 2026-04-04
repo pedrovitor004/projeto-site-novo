@@ -1,7 +1,7 @@
 # 🌐 Portfolio - Pedro | Fullstack Developer
 
 <p align="center">
-  <img src="./Mockup (1).jpg" alt="Banner do Projeto" width="100%">
+  <img src="Mockup (1).jpg" alt="Banner do Projeto" width="100%">
 </p>
 
 ## 🚀 Sobre o Projeto
