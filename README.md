@@ -1,7 +1,7 @@
 # 🌐 Portfolio - Pedro | Fullstack Developer
 
 <p align="center">
-  <img src="Mockup (1).jpg" alt="Banner do Projeto" width="100%">
+  <img src="Mockup (1).png" alt="Banner do Projeto" width="100%">
 </p>
 
 ## 🚀 Sobre o Projeto
@@ -28,12 +28,12 @@ O projeto foi construído "do zero", priorizando a leveza e o controle total do 
 O design foi pensado primeiro para a experiência do usuário, garantindo que o portfólio seja impecável em qualquer dispositivo.
 
 <p align="center">
-  <img src="./PSD (1).jpg" width="45%" alt="Versão Mobile" />
-  <img src="./PSD.jpg" width="45%" alt="Versão Mobile Sobre" />
+  <img src="./PSD (1).png" width="45%" alt="Versão Mobile" />
+  <img src="./PSD.png" width="45%" alt="Versão Mobile Sobre" />
 </p>
 
 <p align="center">
-  <img src="./Mockup (2).jpg" width="90%" alt="Versão Desktop" />
+  <img src="./Mockup (2).png" width="90%" alt="Versão Desktop" />
 </p>
 
 ---
