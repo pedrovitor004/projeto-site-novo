@@ -10,6 +10,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="gradient-bg"></div>
@@ -59,11 +63,41 @@
             </div>
           </div>
 
-          <div class="spline-spacer" data-aos="fade-left">
-            <spline-viewer
-              url="https://prod.spline.design/Or8v5Ghr8VB7N6lz/scene.splinecode"
-              hint="false"
-            ></spline-viewer>
+          <!-- SUBSTITUIÇÃO DO SPLINE: Visual nativo CSS/JS de alta performance -->
+          <div class="hero-visual" data-aos="fade-left">
+            <div class="visual-scene">
+              <!-- Anéis orbitais -->
+              <div class="orbit orbit-1">
+                <div class="orbit-dot"></div>
+              </div>
+              <div class="orbit orbit-2">
+                <div class="orbit-dot"></div>
+              </div>
+              <div class="orbit orbit-3">
+                <div class="orbit-dot"></div>
+              </div>
+
+              <!-- Núcleo central -->
+              <div class="core-wrapper">
+                <div class="core-glow"></div>
+                <div class="core">
+                  <div class="core-inner">
+                    <i class="fas fa-code"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Partículas flutuantes -->
+              <div class="particle p1"><i class="fab fa-vuejs"></i></div>
+              <div class="particle p2"><i class="fab fa-react"></i></div>
+              <div class="particle p3"><i class="fab fa-laravel"></i></div>
+              <div class="particle p4"><i class="fas fa-database"></i></div>
+              <div class="particle p5"><i class="fab fa-linux"></i></div>
+              <div class="particle p6"><i class="fas fa-leaf"></i></div>
+
+              <!-- Grid de fundo -->
+              <div class="grid-bg"></div>
+            </div>
           </div>
         </div>
       </main>
@@ -134,13 +168,11 @@
                   Minha missão é construir aplicações que não apenas funcionem,
                   mas que proporcionem uma experiência única ao usuário.
                 </p>
-
                 <p><span class="t-purple">❯</span> ls interesses/</p>
                 <p class="t-blue">
                   clean_code.pdf scalable_systems.exe ui_ux_design.png
                   coffee_addiction.git
                 </p>
-
                 <p>
                   <span class="t-purple">❯</span> sudo apt-get install dreams
                 </p>
@@ -148,7 +180,6 @@
                   Sempre buscando a próxima tecnologia de ponta para dominar o
                   amanhã.
                 </p>
-
                 <div class="cursor"></div>
               </div>
             </div>
@@ -241,27 +272,12 @@
         </div>
       </section>
     </div>
-    <script
-      type="module"
-      src="https://unpkg.com/@splinetool/viewer@1.12.74/build/spline-viewer.js"
-    ></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      // Inicialização do AOS
       AOS.init({ once: true, duration: 1000 });
 
-      // Limpeza da logo do Spline
-      const cleanSpline = () => {
-        const v = document.querySelector("spline-viewer");
-        if (v && v.shadowRoot) {
-          const logo = v.shadowRoot.querySelector("#built-with-spline");
-          if (logo) logo.remove();
-        }
-      };
-      setInterval(cleanSpline, 500);
-
-      // LÓGICA DE SCROLL HORIZONTAL DINÂMICO
+      // SCROLL HORIZONTAL DINÂMICO
       window.addEventListener("scroll", () => {
         const scrollSection = document.querySelector(
           ".projects-horizontal-wrapper",
@@ -275,11 +291,12 @@
 
           let distance = window.pageYOffset - sectionOffsetTop;
           let percentage = (distance / (sectionHeight - windowHeight)) * 100;
-
           percentage = Math.min(100, Math.max(0, percentage));
 
-          // O valor 0.75 ajusta a velocidade da saída dos cards
-          scrollContent.style.transform = `translateX(${-percentage * 0.78}%)`;
+          // Só aplica em desktop
+          if (window.innerWidth > 768) {
+            scrollContent.style.transform = `translateX(${-percentage * 0.78}%)`;
+          }
         }
       });
     </script>
